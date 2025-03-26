@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -12,6 +11,9 @@ public class Main : MonoBehaviour {
 
     [SerializeField] Vector2 boardSize;
 
+    //TODO: move it somewhere else after refactor
+    CursorManager cursorManager = new();
+    
     Player player;
 
     CancellationTokenSource multiplayerCTS = new();
@@ -19,9 +21,8 @@ public class Main : MonoBehaviour {
     Host host;
     GamePeer peer;
 
-    float previousMousePosition;
-
     void Awake() {
+        cursorManager.LockCursor();
         SetupMultiplayer();
         player = InstantiatePlayer();
         InstantiateReflection();
@@ -48,11 +49,11 @@ public class Main : MonoBehaviour {
         //     client.Run(peer, multiplayerCTS.Token).Forget();
         //     this.peer = peer;
         //     PingHost(multiplayerCTS.Token).Forget();
-
+        //
         //     void HandleDataReceived(byte[] data) {
         //         Debug.Log($"Received data: {Encoding.UTF8.GetString(data)}");
         //     }
-
+        //
         //     async UniTask PingHost(CancellationToken cancellationToken) {
         //         while (!cancellationToken.IsCancellationRequested) {
         //             await UniTask.Delay(TimeSpan.FromSeconds(10), cancellationToken: cancellationToken);
@@ -79,10 +80,6 @@ public class Main : MonoBehaviour {
             => UnityEngine.Random.value - 0.5f;
     }
 
-    void Start() {
-        previousMousePosition = GetMousePosition();
-    }
-
     void Update() {
         CheckPortals();
         CheckInput();
@@ -96,16 +93,6 @@ public class Main : MonoBehaviour {
 #endif
                 Application.Quit();
             }
-
-            if (Input.anyKey)
-                player.Move(Config.MOVEMENT);
-
-            var mousePosition = GetMousePosition();
-            var mouseDelta = mousePosition - previousMousePosition;
-            previousMousePosition = mousePosition;
-
-            if (!Mathf.Approximately(mouseDelta, 0f))
-                player.Rotate(mouseDelta);
         }
 
         void CheckPortals() {
@@ -126,7 +113,4 @@ public class Main : MonoBehaviour {
             player.transform.position = portal.GetExitPortal().transform.position - positionDiff * 2f;
         }
     }
-
-    float GetMousePosition()
-        => Input.mousePosition.x;
 }

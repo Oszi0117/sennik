@@ -1,4 +1,5 @@
 public static class Config {
-    public const float MOVEMENT = .1f;
-    public const float ROTATION = .1f;
+    public const float DEFAULT_MOVEMENT = 5f;
+    public const float DEFAULT_MOUSE_ROTATION = 5f;
+    public const float DEFAULT_GAMEPAD_ROTATION = 100f;
 }
