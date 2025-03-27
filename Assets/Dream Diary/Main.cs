@@ -10,9 +10,6 @@ public class Main : MonoBehaviour {
     [SerializeField] Reflection reflectionPrefab;
 
     [SerializeField] Vector2 boardSize;
-
-    //TODO: move it somewhere else after refactor
-    CursorManager cursorManager = new();
     
     Player player;
 
@@ -22,10 +19,8 @@ public class Main : MonoBehaviour {
     GamePeer peer;
 
     void Awake() {
-        cursorManager.LockCursor();
         SetupMultiplayer();
-        player = InstantiatePlayer();
-        InstantiateReflection();
+        //InstantiateReflection();
         return;
 
         void SetupMultiplayer() {
@@ -62,26 +57,11 @@ public class Main : MonoBehaviour {
         //     }
         // }
 
-        Player InstantiatePlayer()
-            => Instantiate(playerPrefab, GetRandomPosition(), rotation: Quaternion.identity);
-
-        void InstantiateReflection()
-            => Instantiate(reflectionPrefab, GetRandomPosition(), rotation: Quaternion.identity);
-
-        Vector3 GetRandomPosition() {
-            return new Vector3(
-                GetRandomOffset() * boardSize.x,
-                0f,
-                GetRandomOffset() * boardSize.y
-            );
-        }
-
-        float GetRandomOffset()
-            => UnityEngine.Random.value - 0.5f;
+        // void InstantiateReflection()
+        //     => Instantiate(reflectionPrefab, GetRandomPosition(), rotation: Quaternion.identity);
     }
 
     void Update() {
-        CheckPortals();
         CheckInput();
         return;
 
@@ -93,24 +73,6 @@ public class Main : MonoBehaviour {
 #endif
                 Application.Quit();
             }
-        }
-
-        void CheckPortals() {
-            var trigger = player.enteredTrigger;
-            if (trigger == null)
-                return;
-
-            var portal = trigger.GetComponent<Portal>();
-            if (portal != null)
-                UsePortal(portal);
-
-            player.enteredTrigger = null;
-        }
-
-        void UsePortal(Portal portal) {
-            var positionDiff = portal.transform.position - player.transform.position;
-            Debug.Log($"{nameof(UsePortal)}: from {portal.name} to {portal.GetExitPortal().name}"); //TODO remove once the issue is fixed
-            player.transform.position = portal.GetExitPortal().transform.position - positionDiff * 2f;
         }
     }
 }
