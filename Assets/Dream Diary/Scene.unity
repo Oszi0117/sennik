@@ -185,11 +185,16 @@ MonoBehaviour:
     maxGenerationSamples: 100
     desiredPortalsCount: 6
     minDistanceToWall: 20
-  playerSpawner:
-    playerPrefab: {fileID: 4790980799210219804, guid: cbe8e8620055bd743b9ceccbb57df4c2, type: 3}
   portalsSpawner:
     portalsManagerPrefab: {fileID: 3319290660482623918, guid: f0c5415e04afb7f40b45f975d75926fc, type: 3}
     portalPrefab: {fileID: 3972291562057900149, guid: 317c09d55b47260f49f4bcbbca0b83b6, type: 3}
+  playerAndReflectionSpawnPointsGenerator:
+    maxAllowedDistance: 80
+    minDistanceToPortals: 3
+  playerSpawner:
+    playerPrefab: {fileID: 4790980799210219804, guid: cbe8e8620055bd743b9ceccbb57df4c2, type: 3}
+  reflectionSpawner:
+    reflectionSpawner: {fileID: 114238222001440680, guid: 8318a755584254b6ab0092e6f41682d9, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

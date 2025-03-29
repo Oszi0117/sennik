@@ -4,7 +4,7 @@ using Dream_Diary.RuntimeData;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Dream_Diary.Spawners {
+namespace Dream_Diary.GameInit.Spawners {
     [Serializable]
     public class MapSpawner {
         [SerializeField] Transform mapParent;

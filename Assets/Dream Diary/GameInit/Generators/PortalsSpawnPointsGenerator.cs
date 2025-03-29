@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using Dream_Diary.RuntimeData;
 using UnityEngine;
 
-namespace Dream_Diary.Generators {
+namespace Dream_Diary.GameInit.Generators {
     [Serializable]
     public class PortalsSpawnPointsGenerator {
         [SerializeField] float minDistanceBetweenPortals;

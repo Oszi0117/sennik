@@ -16,6 +16,8 @@ namespace Dream_Diary.RuntimeData {
 
         public MapData MapData;
         public PortalsData PortalsData;
+        public PlayerData PlayerData;
+        public ReflectionData ReflectionData;
         
         static GeneratedData instance;
         GeneratedData(){ }
@@ -26,7 +28,16 @@ namespace Dream_Diary.RuntimeData {
         public int MapHeight;
         public int[,] MapCells;
     }
+    
     public struct PortalsData {
         public List<Vector3> PortalsSpawnPoints; 
+    }
+
+    public struct PlayerData {
+        public Vector3 PlayerSpawnPoint;
+    }
+
+    public struct ReflectionData {
+        public Vector3 ReflectionSpawnPoint;
     }
 }

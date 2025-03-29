@@ -1,8 +1,8 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Dream_Diary.Generators;
+using Dream_Diary.GameInit.Generators;
+using Dream_Diary.GameInit.Spawners;
 using Dream_Diary.RuntimeData;
-using Dream_Diary.Spawners;
 using UnityEngine;
 
 namespace Dream_Diary.GameInit {
@@ -11,9 +11,11 @@ namespace Dream_Diary.GameInit {
         [SerializeField] MapSpawner mapSpawner = new();
         
         [SerializeField] PortalsSpawnPointsGenerator portalsSpawnPointsGenerator = new();
-        
-        [SerializeField] PlayerSpawner playerSpawner = new();
         [SerializeField] PortalsSpawner portalsSpawner = new();
+        
+        [SerializeField] PlayerAndReflectionSpawnPointsGenerator playerAndReflectionSpawnPointsGenerator = new();
+        [SerializeField] PlayerSpawner playerSpawner = new();
+        [SerializeField] ReflectionSpawner reflectionSpawner = new();
         
         CursorManager cursorManager = new();
 
@@ -36,10 +38,18 @@ namespace Dream_Diary.GameInit {
             var portalsSpawnPoints = await portalsSpawnPointsGenerator.GenerateSpawnPoints();
             GeneratedData.Instance.PortalsData.PortalsSpawnPoints = portalsSpawnPoints;
             portalsSpawner.SpawnPortals();
+
+            var spawnPoints = await playerAndReflectionSpawnPointsGenerator.GenerateSpawnPoints();
+            GeneratedData.Instance.PlayerData = new PlayerData {
+                PlayerSpawnPoint = spawnPoints.Item1
+            };
+            GeneratedData.Instance.ReflectionData = new ReflectionData {
+                ReflectionSpawnPoint = spawnPoints.Item2
+            };
+            playerSpawner.SpawnPlayer();
+            reflectionSpawner.SpawnReflection();
             
-            playerSpawner.SpawnNewPlayer();
             cursorManager.LockCursor();
-            //TODO: add reflection spawner
         }
     }
 }

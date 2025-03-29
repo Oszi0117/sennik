@@ -4,7 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Dream_Diary.Generators {
+namespace Dream_Diary.GameInit.Generators {
     [Serializable]
     public class MapGenerator {
         public int MapWidth => width;
