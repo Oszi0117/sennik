@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Dream_Diary.GameInit
-{
+namespace Dream_Diary.GameInit {
     [Serializable]
     public class PlayerSpawner {
         [SerializeField] Player playerPrefab;
