@@ -19,12 +19,18 @@ namespace Dream_Diary.GameInit {
         [SerializeField] ReflectionSpawner reflectionSpawner = new();
 
         CursorManager cursorManager;
+        ConfigLoader configLoader = new();
+        TimeCounter timeCounter = new();
 
-        CancellationToken cancellationToken;
+        CancellationToken destroyToken;
+        CancellationTokenSource winTokenSource;
         
         private void Start() {
-            cancellationToken = destroyCancellationToken;
-            InitializeGame(cancellationToken).Forget();
+            destroyToken = destroyCancellationToken;
+            winTokenSource = new(); 
+            configLoader.ApplyConfigFromSO();
+            configLoader = null;
+            InitializeGame(destroyToken).Forget();
         }
 
         private async UniTask InitializeGame(CancellationToken ct) {
@@ -57,6 +63,8 @@ namespace Dream_Diary.GameInit {
             
             cursorManager = new(player.GetComponent<PlayerInput>());
             cursorManager.LockCursor();
+
+            timeCounter.CountTime(CancellationTokenSource.CreateLinkedTokenSource(winTokenSource.Token, destroyToken).Token).Forget();
         }
     }
 }

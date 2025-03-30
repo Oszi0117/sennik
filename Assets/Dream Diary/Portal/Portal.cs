@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Dream_Diary.RuntimeData;
 using UnityEngine;
 
 public class Portal : MonoBehaviour {
@@ -50,6 +51,7 @@ public class Portal : MonoBehaviour {
     }
     
     void UsePortal(Player player) {
+        GameData.Instance.GameplayData.UsedTeleportsCount++;
         var positionDiff = transform.position - player.transform.position;
         var newPosition = exitPortal.transform.position - positionDiff * 2f;
         newPosition.y = player.transform.position.y;
