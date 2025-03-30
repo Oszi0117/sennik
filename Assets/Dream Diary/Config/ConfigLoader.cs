@@ -2,15 +2,10 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class ConfigLoader {
-    const string CONFIG_PATH = "Config/ConfigSO";
-    public void ApplyConfigFromSO() {
-        var configSO = LoadConfigSO(CONFIG_PATH);
-        Config.DEFAULT_MOVEMENT = configSO.Movement;
-        UnloadConfigSO(configSO);
-    }
+    public const string CONFIG_PATH = "Config/ConfigSO";
 
-    public ConfigSO LoadConfigSO(string path)
-        => Resources.Load<ConfigSO>(path);
+    public ConfigSO LoadConfigSO()
+        => Resources.Load<ConfigSO>(CONFIG_PATH);
 
     public void UnloadConfigSO(Object unloadObject) {
         Resources.UnloadAsset(unloadObject);

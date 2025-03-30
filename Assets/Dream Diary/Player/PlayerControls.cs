@@ -33,7 +33,7 @@ public class PlayerControls : MonoBehaviour {
             cameraForward.Normalize();
             cameraRight.Normalize();
             Vector3 movementDirection = (cameraForward * movementInput.y + cameraRight * movementInput.x);
-            characterController.Move(movementDirection * (Config.DEFAULT_MOVEMENT * Time.deltaTime));
+            characterController.Move(movementDirection * (Config.MovementSpeed * Time.deltaTime));
         }
 
         void HandleRotation() {

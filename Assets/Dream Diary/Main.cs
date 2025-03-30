@@ -54,9 +54,6 @@ public class Main : MonoBehaviour {
         //         }
         //     }
         // }
-
-        // void InstantiateReflection()
-        //     => Instantiate(reflectionPrefab, GetRandomPosition(), rotation: Quaternion.identity);
     }
 
     void Update() {

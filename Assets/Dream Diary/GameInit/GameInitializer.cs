@@ -19,7 +19,6 @@ namespace Dream_Diary.GameInit {
         [SerializeField] ReflectionSpawner reflectionSpawner = new();
 
         CursorManager cursorManager;
-        ConfigLoader configLoader = new();
         TimeCounter timeCounter = new();
 
         CancellationToken destroyToken;
@@ -28,8 +27,6 @@ namespace Dream_Diary.GameInit {
         private void Start() {
             destroyToken = destroyCancellationToken;
             winTokenSource = new(); 
-            configLoader.ApplyConfigFromSO();
-            configLoader = null;
             InitializeGame(destroyToken).Forget();
         }
 
