@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     [SerializeField] Player playerPrefab;
-    [SerializeField] Reflection reflectionPrefab;
-
     [SerializeField] Vector2 boardSize;
     
     Player player;

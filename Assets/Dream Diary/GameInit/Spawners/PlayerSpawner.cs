@@ -8,7 +8,7 @@ namespace Dream_Diary.GameInit.Spawners {
     public class PlayerSpawner {
         [SerializeField] Player playerPrefab;
 
-        public void SpawnPlayer()
-            => Object.Instantiate(playerPrefab, GeneratedData.Instance.PlayerData.PlayerSpawnPoint, Quaternion.identity);
+        public Player SpawnPlayer()
+            => Object.Instantiate(playerPrefab, GameData.Instance.PlayerData.PlayerSpawnPoint, Quaternion.identity);
     }
 }

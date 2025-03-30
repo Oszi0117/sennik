@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "674a7b26-98a3-48ab-b25f-a1b1c1f0fbf5",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "ScaleVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -19,7 +19,7 @@
                     "type": "Value",
                     "id": "c650a2df-ccbe-4ca1-802b-1373e9c2664a",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "ScaleVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -96,7 +96,7 @@
                     "id": "53a3ef96-65f5-4339-aa41-6eb7a0262444",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2",
+                    "processors": "ScaleVector2(x=5,y=5)",
                     "groups": ";Mouse&Keyboard",
                     "action": "Look",
                     "isComposite": false,
@@ -107,7 +107,7 @@
                     "id": "83ac9af8-360b-402b-a2c1-15573b40f171",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "StickDeadzone,ScaleVector2",
+                    "processors": "StickDeadzone,ScaleVector2(x=100,y=100)",
                     "groups": ";Gamepad",
                     "action": "Look",
                     "isComposite": false,

@@ -18,9 +18,9 @@ namespace Dream_Diary.GameInit.Spawners {
         }
 
         void SpawnFloor() {
-            var map = GeneratedData.Instance.MapData.MapCells;
-            var width = GeneratedData.Instance.MapData.MapWidth;
-            var height = GeneratedData.Instance.MapData.MapHeight;
+            var map = GameData.Instance.MapData.MapCells;
+            var width = GameData.Instance.MapData.MapWidth;
+            var height = GameData.Instance.MapData.MapHeight;
             var combinedMeshParent = Object.Instantiate(combinedMeshesParentPrefab, mapParent);
             var meshFilters = new List<MeshFilter>();
 
@@ -51,9 +51,9 @@ namespace Dream_Diary.GameInit.Spawners {
         }
         
         void SpawnWalls() {
-            var map = GeneratedData.Instance.MapData.MapCells;
-            var width = GeneratedData.Instance.MapData.MapWidth;
-            var height = GeneratedData.Instance.MapData.MapHeight;
+            var map = GameData.Instance.MapData.MapCells;
+            var width = GameData.Instance.MapData.MapWidth;
+            var height = GameData.Instance.MapData.MapHeight;
             var combinedMeshParent = Object.Instantiate(combinedMeshesParentPrefab, mapParent);
             var meshFilters = new List<MeshFilter>();
             

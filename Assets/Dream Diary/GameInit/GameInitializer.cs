@@ -4,6 +4,7 @@ using Dream_Diary.GameInit.Generators;
 using Dream_Diary.GameInit.Spawners;
 using Dream_Diary.RuntimeData;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Dream_Diary.GameInit {
     public class GameInitializer : MonoBehaviour {
@@ -16,8 +17,8 @@ namespace Dream_Diary.GameInit {
         [SerializeField] PlayerAndReflectionSpawnPointsGenerator playerAndReflectionSpawnPointsGenerator = new();
         [SerializeField] PlayerSpawner playerSpawner = new();
         [SerializeField] ReflectionSpawner reflectionSpawner = new();
-        
-        CursorManager cursorManager = new();
+
+        CursorManager cursorManager;
 
         CancellationToken cancellationToken;
         
@@ -27,28 +28,34 @@ namespace Dream_Diary.GameInit {
         }
 
         private async UniTask InitializeGame(CancellationToken ct) {
+            GameData.Instance.ResetGameplayData();
+            
+            //generate and spawn map (floor and walls)
             var generatedMapCells = await mapGenerator.GenerateMap(ct);
-            GeneratedData.Instance.MapData = new MapData {
+            GameData.Instance.MapData = new MapData {
                 MapWidth = mapGenerator.MapWidth,
                 MapHeight = mapGenerator.MapHeight,
                 MapCells = generatedMapCells
             };
             mapSpawner.Spawn();
 
-            var portalsSpawnPoints = await portalsSpawnPointsGenerator.GenerateSpawnPoints();
-            GeneratedData.Instance.PortalsData.PortalsSpawnPoints = portalsSpawnPoints;
+            //generate and spawn portals
+            var portalsSpawnPoints = await portalsSpawnPointsGenerator.GenerateSpawnPoints(ct);
+            GameData.Instance.PortalsData.PortalsSpawnPoints = portalsSpawnPoints;
             portalsSpawner.SpawnPortals();
 
+            //generate and spawn player and reflection
             var spawnPoints = await playerAndReflectionSpawnPointsGenerator.GenerateSpawnPoints();
-            GeneratedData.Instance.PlayerData = new PlayerData {
+            GameData.Instance.PlayerData = new PlayerData {
                 PlayerSpawnPoint = spawnPoints.Item1
             };
-            GeneratedData.Instance.ReflectionData = new ReflectionData {
+            GameData.Instance.ReflectionData = new ReflectionData {
                 ReflectionSpawnPoint = spawnPoints.Item2
             };
-            playerSpawner.SpawnPlayer();
+            var player = playerSpawner.SpawnPlayer();
             reflectionSpawner.SpawnReflection();
             
+            cursorManager = new(player.GetComponent<PlayerInput>());
             cursorManager.LockCursor();
         }
     }

@@ -11,7 +11,7 @@ namespace Dream_Diary.GameInit.Spawners {
 
         public void SpawnPortals() {
             var manager = Object.Instantiate(portalsManagerPrefab);
-            var spawnPoints = GeneratedData.Instance.PortalsData.PortalsSpawnPoints;
+            var spawnPoints = GameData.Instance.PortalsData.PortalsSpawnPoints;
             foreach (Vector3 position in spawnPoints) {
                 var newPortal = Object.Instantiate(portalPrefab, position, Quaternion.identity).GetComponent<Portal>();
                 manager.BindPortal(newPortal);

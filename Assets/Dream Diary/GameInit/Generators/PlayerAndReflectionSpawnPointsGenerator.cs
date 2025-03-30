@@ -12,8 +12,8 @@ namespace Dream_Diary.GameInit.Generators {
 
         public UniTask<(Vector3, Vector3)> GenerateSpawnPoints() {
             return UniTask.RunOnThreadPool(() => {
-                var mapData = GeneratedData.Instance.MapData;
-                var portalsData = GeneratedData.Instance.PortalsData;
+                var mapData = GameData.Instance.MapData;
+                var portalsData = GameData.Instance.PortalsData;
                 var emptyPositions = new List<Vector3>();
 
                 for (int x = 0; x < mapData.MapWidth; x++) {

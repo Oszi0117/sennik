@@ -9,6 +9,6 @@ namespace Dream_Diary.GameInit.Spawners {
         [SerializeField] Reflection reflectionSpawner;
 
         public void SpawnReflection()
-            => Object.Instantiate(reflectionSpawner, GeneratedData.Instance.ReflectionData.ReflectionSpawnPoint, Quaternion.identity);
+            => Object.Instantiate(reflectionSpawner, GameData.Instance.ReflectionData.ReflectionSpawnPoint, Quaternion.identity);
     }
 }

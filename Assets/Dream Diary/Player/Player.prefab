@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 6523633400935970757}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212339, y: -0.0000000043049817, z: 6.6260003e-10, w: 0.98836154}
-  m_LocalPosition: {x: 0, y: 1.5035291, z: -4.7685843}
+  m_LocalPosition: {x: 0, y: 1.5035291, z: -4.7685847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -480,7 +480,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
