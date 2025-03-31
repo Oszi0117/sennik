@@ -8095,7 +8095,6 @@ MonoBehaviour:
   choiceBackButton: {fileID: 2109516142}
   mainMenuManager: {fileID: 1116350307}
   textPrompt: {fileID: 1923539435}
-  sessionPrefab: {fileID: 3461946125952156624, guid: 6d1e667593ba55d41920cae4fc9362ff, type: 3}
 --- !u!1 &2668821399632676721
 GameObject:
   m_ObjectHideFlags: 0

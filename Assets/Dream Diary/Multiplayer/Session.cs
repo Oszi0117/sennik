@@ -26,7 +26,7 @@ namespace Dream_Diary.Multiplayer {
                     break;
             }
         }
-    
+
         void SetupMultiplayerHost(MultiplayerSessionData sessionData) {
             host = new(port: sessionData.Port);
             var peer = new Peer();
@@ -40,7 +40,7 @@ namespace Dream_Diary.Multiplayer {
                 peer.SendData(encoding.GetBytes("General Kenobi"));
             }
         }
-    
+
         void SetupMultiplayerClient(MultiplayerSessionData sessionData) {
             client = new(ip: sessionData.Ip, port: sessionData.Port);
             var peer = new Peer();
@@ -48,11 +48,11 @@ namespace Dream_Diary.Multiplayer {
             client.Run(peer, multiplayerCTS.Token).Forget();
             this.peer = peer;
             PingHost(multiplayerCTS.Token).Forget();
-        
+
             void HandleDataReceived(byte[] data) {
                 Debug.Log($"Received data: {Encoding.UTF8.GetString(data)}");
             }
-        
+
             async UniTask PingHost(CancellationToken cancellationToken) {
                 while (!cancellationToken.IsCancellationRequested) {
                     await UniTask.Delay(TimeSpan.FromSeconds(10), cancellationToken: cancellationToken);
@@ -67,6 +67,7 @@ namespace Dream_Diary.Multiplayer {
             Host,
             Client
         }
+
         public Node NodeType;
         public string Ip;
         public int Port;

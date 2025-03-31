@@ -7,8 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Dream_Diary.UI.Menu
-{
+namespace Dream_Diary.UI.Menu {
     public class MultiplayerSetup : MonoBehaviour {
         [SerializeField] private GameObject choicePanel;
         [SerializeField] private GameObject hostPanel;
@@ -25,7 +24,6 @@ namespace Dream_Diary.UI.Menu
         [SerializeField] private Button choiceBackButton;
         [SerializeField] private GameObject mainMenuManager;
         [SerializeField] private TMP_Text textPrompt;
-        [SerializeField] private Session sessionPrefab;
 
         CancellationTokenSource cts;
         int hostPort;
@@ -59,13 +57,12 @@ namespace Dream_Diary.UI.Menu
                     Ip = clientIp,
                     Port = clientPort
                 };
-                Instantiate(sessionPrefab).InitializeSession(sessionData).Forget();
             } else {
                 cts.Cancel();
                 RenewTokenSource();
                 DisplayTextPrompt("Incorrect IP address", cts.Token).Forget();
             }
-            
+
             bool IsIPv4Valid() {
                 string pattern = @"^(25[0-5]|2[0-4][0-9]|1\d\d|[1-9]?\d)\."
                                  + @"(25[0-5]|2[0-4][0-9]|1\d\d|[1-9]?\d)\."
@@ -81,14 +78,13 @@ namespace Dream_Diary.UI.Menu
                 NodeType = MultiplayerSessionData.Node.Host,
                 Port = hostPort
             };
-            Instantiate(sessionPrefab).InitializeSession(sessionData).Forget();
         }
 
         void HandleHostPortChanged(string port) {
             try {
                 hostPort = int.Parse(port);
             } catch (FormatException e) {
-                if (hostPortInputField.text.Length > 0) 
+                if (hostPortInputField.text.Length > 0)
                     hostPortInputField.text = hostPortInputField.text.Substring(0, hostPortInputField.text.Length - 1);
                 cts.Cancel();
                 RenewTokenSource();
@@ -100,8 +96,9 @@ namespace Dream_Diary.UI.Menu
             try {
                 clientPort = int.Parse(port);
             } catch (FormatException e) {
-                if (clientPortInputField.text.Length > 0) 
-                    clientPortInputField.text = clientPortInputField.text.Substring(0, clientPortInputField.text.Length - 1);
+                if (clientPortInputField.text.Length > 0)
+                    clientPortInputField.text =
+                        clientPortInputField.text.Substring(0, clientPortInputField.text.Length - 1);
                 cts.Cancel();
                 RenewTokenSource();
                 DisplayTextPrompt("Incorrect port", cts.Token).Forget();
@@ -121,13 +118,13 @@ namespace Dream_Diary.UI.Menu
             hostPanel.SetActive(true);
             choicePanel.SetActive(false);
         }
-    
+
         void HandleBack() {
             choicePanel.SetActive(true);
             hostPanel.SetActive(false);
             clientPanel.SetActive(false);
         }
-    
+
         void HandleBackToMainMenu() {
             gameObject.SetActive(false);
             mainMenuManager.gameObject.SetActive(true);
@@ -139,7 +136,7 @@ namespace Dream_Diary.UI.Menu
             await UniTask.Delay(2000, cancellationToken: ct);
             textPrompt.gameObject.SetActive(false);
         }
-        
+
         void RenewTokenSource() {
             cts = new CancellationTokenSource();
             cts = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, destroyCancellationToken);
