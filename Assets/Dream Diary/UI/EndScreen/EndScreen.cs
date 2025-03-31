@@ -28,7 +28,7 @@ public class EndScreen : MonoBehaviour {
     }
 
     void BackToMenu() {
-        SceneLoader.Instance.LoadSceneAsync("MainMenu").Forget();
+        SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
     }
 
