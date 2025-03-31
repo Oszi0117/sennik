@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Dream_Diary.GameInit.Generators;
 using Dream_Diary.GameInit.Spawners;
 using Dream_Diary.RuntimeData;
+using Dream_Diary.Scenes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -57,11 +58,15 @@ namespace Dream_Diary.GameInit {
             };
             var player = playerSpawner.SpawnPlayer();
             reflectionSpawner.SpawnReflection();
-            
-            cursorManager = new(player.GetComponent<PlayerInput>());
+
+            var playerInput = player.GetComponent<PlayerInput>();
+            playerInput.DeactivateInput();
+            cursorManager = new(playerInput);
             cursorManager.LockCursor();
 
             timeCounter.CountTime(CancellationTokenSource.CreateLinkedTokenSource(winTokenSource.Token, destroyToken).Token).Forget();
+            SceneLoader.Instance.FinishLoading();
+            playerInput.ActivateInput();
         }
     }
 }

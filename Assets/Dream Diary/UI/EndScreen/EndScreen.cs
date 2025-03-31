@@ -1,5 +1,6 @@
 using System;
 using Dream_Diary.RuntimeData;
+using Dream_Diary.Scenes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,12 +23,12 @@ public class EndScreen : MonoBehaviour {
     }
 
     void RestartGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name).Forget();
         Time.timeScale = 1;
     }
 
     void BackToMenu() {
-        
+        SceneLoader.Instance.LoadSceneAsync("MainMenu").Forget();
         Time.timeScale = 1;
     }
 

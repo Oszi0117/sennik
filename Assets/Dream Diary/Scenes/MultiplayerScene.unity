@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fedcc0597d0134aabfcc83ce46e3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parent1: {fileID: 0}
+  _parent2: {fileID: 0}
   mapGenerator:
     levelParent: {fileID: 56407649}
     width: 100
@@ -413,6 +415,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endScreenPrefab: {fileID: 3435740754432167256, guid: dbaeb46f5a1bc5d4aaf969eca03f1aa6, type: 3}
+--- !u!1 &1744690910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744690912}
+  - component: {fileID: 1744690911}
+  m_Layer: 0
+  m_Name: Main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1744690911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744690910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2d6181fa14c6302a90fc9783524f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 4790980799210219804, guid: cbe8e8620055bd743b9ceccbb57df4c2, type: 3}
+  boardSize: {x: 100, y: 100}
+--- !u!4 &1744690912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744690910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -420,4 +468,5 @@ SceneRoots:
   - {fileID: 812527614}
   - {fileID: 705507995}
   - {fileID: 56407649}
+  - {fileID: 1744690912}
   - {fileID: 1011779756}
