@@ -422,6 +422,7 @@ MonoBehaviour:
   playerCamera: {fileID: 5899661759154770851}
   moveActionReference: {fileID: -4404746832520370835, guid: f2fce857ee6bd224687d910545407c17, type: 3}
   lookActionReference: {fileID: -4922076886663148282, guid: f2fce857ee6bd224687d910545407c17, type: 3}
+  backToMainMenuActionReference: {fileID: 1243016170010719900, guid: f2fce857ee6bd224687d910545407c17, type: 3}
 --- !u!114 &1525474185951011408
 MonoBehaviour:
   m_ObjectHideFlags: 0

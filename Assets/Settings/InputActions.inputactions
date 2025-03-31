@@ -22,6 +22,15 @@
                     "processors": "ScaleVector2",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "BackToMainMenu",
+                    "type": "Button",
+                    "id": "f282cce3-8457-432d-b98b-a44b49771108",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -110,6 +119,28 @@
                     "processors": "StickDeadzone,ScaleVector2(x=100,y=100)",
                     "groups": ";Gamepad",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a4d9490-b68b-45da-ba3f-e1850f2f5459",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "BackToMainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "562f4836-326a-403f-a10c-c9f72a052065",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "BackToMainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

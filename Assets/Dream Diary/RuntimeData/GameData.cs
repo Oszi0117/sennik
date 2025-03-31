@@ -22,13 +22,12 @@ namespace Dream_Diary.RuntimeData {
         public Signal WinSignal = new();
         static GameData instance;
 
-        GameData() {
-            WinSignal.Subscribe(OnWin);
-        }
+        GameData()
+            => WinSignal.Subscribe(OnWin);
+        
 
-        public void ResetGameplayData() {
-            GameplayData = new();
-        }
+        public void ResetGameplayData()
+            => GameplayData = new();
 
         void OnWin()
             => GameplayData.GameFinished = true;

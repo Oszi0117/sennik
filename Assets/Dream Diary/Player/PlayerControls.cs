@@ -1,6 +1,7 @@
+using Dream_Diary.Scenes;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Processors;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerControls : MonoBehaviour {
@@ -9,14 +10,17 @@ public class PlayerControls : MonoBehaviour {
     [SerializeField] Camera playerCamera;
     [SerializeField] InputActionReference moveActionReference;
     [SerializeField] InputActionReference lookActionReference;
+    [SerializeField] InputActionReference backToMainMenuActionReference;
     
     Vector2 movementInput;
     Vector2 lookInput;
     float targetYRotation;
 
     void Start() {
-        moveActionReference.action.performed += On_MovePerformed;
-        moveActionReference.action.canceled += On_MoveCanceled;
+        moveActionReference.action.performed += HandleMovePerformed;
+        moveActionReference.action.canceled += HandleMoveCanceled;
+        backToMainMenuActionReference.action.performed += HandleBackToMainMenu;
+
     }
 
     void Update() {
@@ -42,11 +46,12 @@ public class PlayerControls : MonoBehaviour {
         }
     }
 
-    void On_MovePerformed(InputAction.CallbackContext ctx) {
-        movementInput = ctx.ReadValue<Vector2>();
-    }
+    void HandleMovePerformed(InputAction.CallbackContext ctx)
+        => movementInput = ctx.ReadValue<Vector2>();
 
-    void On_MoveCanceled(InputAction.CallbackContext ctx) {
-        movementInput = Vector2.zero;
-    }
+    void HandleMoveCanceled(InputAction.CallbackContext ctx)
+        => movementInput = Vector2.zero;
+    
+    void HandleBackToMainMenu(InputAction.CallbackContext _)
+        => SceneManager.LoadScene("MainMenu");
 }
