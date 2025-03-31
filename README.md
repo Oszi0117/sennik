@@ -2,21 +2,18 @@
 
 ## Obowiązkowe:
 1. Teleportowanie gracza zostało naprawione (od siebie dodałem delay po użyciu portalu + prosty shader dzięki któremu wiadomo czy portal jest aktywny - robiłem to z myślą o multiku żeby urozmaicić rozgrywkę)
-
 2. Ekran końcowy zawiera przycisk do restartu i wyjścia do menu (od siebie dorzuciłem wyświetlanie czasu w jaki udało się dotrzeć do odbicia i ilość użytych portali w danej sesji)
-
 3. Generator podłoża został trochę rozbudowany:
-  a. generator mapy najpierw na podstawie losowego seeda (lub customowego) przy użyciu automatu komórkowego (bawiłem się tym kiedyś w pobocznym projekcie i uznałem że się nada, musiałem tylko dostosować algorytm żeby uwzględniał wytyczne z dodatkowego zadania G.) tworzy tablicę z pozycjami dla ścian i podłóg
-	b. spawner mapy tworzy obiekty w podanych komórkach
-	c. na koniec wszystkie meshe podłogi i ścian są ze sobą mergowane żeby zredukować draw calle (patologiczne podejście ale raczej zabrakło by mi czasu na coś lepszego dla tego sposobu generowania mapy)
-	d. po tym generator pozycji dla portali tworzy listę pozycji; korzysta z poisson disk samplingu dzięki czemu portale są rozstawione w odpowiedniej odległości od siebie
-	e. spawner portali tworzy obiekty i tworzy przy okazji manager przechowujący referencje do każdego z nich dzięki czemu zostają ze sobą połączone (przejścia przez portale zapętlają się, a gdy jeden zostanie użyty wszystkie stają się nieaktywne na pewien czas)
-	f. na koniec generowane są pozycje gracza i odbicia, algorytm zawsze stara się ustawić je jak najdalej od siebie, chyba że mapa jest większa niż maksymalny ustawiony dystans (to też robione było z myślą o multiku)
-
+   - generator mapy najpierw na podstawie losowego seeda (lub customowego) przy użyciu automatu komórkowego (bawiłem się tym kiedyś w pobocznym projekcie i uznałem że się nada, musiałem tylko dostosować algorytm żeby uwzględniał wytyczne z dodatkowego zadania G.) tworzy tablicę z pozycjami dla ścian i podłóg
+   - spawner mapy tworzy obiekty w podanych komórkach
+   - na koniec wszystkie meshe podłogi i ścian są ze sobą mergowane żeby zredukować draw calle (patologiczne podejście ale raczej zabrakło by mi czasu na coś lepszego dla tego sposobu generowania mapy)
+   - po tym generator pozycji dla portali tworzy listę pozycji; korzysta z poisson disk samplingu dzięki czemu portale są rozstawione w odpowiedniej odległości od siebie
+   - spawner portali tworzy obiekty i tworzy przy okazji manager przechowujący referencje do każdego z nich dzięki czemu zostają ze sobą połączone (przejścia przez portale zapętlają się, a gdy jeden zostanie użyty wszystkie stają się nieaktywne na pewien czas)
+   - na koniec generowane są pozycje gracza i odbicia, algorytm zawsze stara się ustawić je jak najdalej od siebie, chyba że mapa jest większa niż maksymalny ustawiony dystans (to też robione było z myślą o multiku)
 4. W menu głównym znajduje się możliwość ustawienia prędkości gracza - jeśli save system nie znalazł pliku z configiem, wczytuje domyślne dane z SO
 
 ## Dodatkowe:
-B - menu główne z możliwością włączenia singleplayera i włączenia setupu multika (wybór host/client i odpowiednie input fieldy)
-G - można w sumie uznać że generator mapy jest za to odpowiedzialny już na etapie modyfikowania komórek - wypełnia wszystkie puste pola flood fillem (MapGenerator.EnsureConnectivity), oprócz tego generator portali również uwzględnia odległości od ścian więc gracz nie zablokuje się po teleportacji (PortalsSpawnPointsGenerator.AdjustPositionAwayFromWalls)
-E - poruszanie kamerą zrobiłem przy pomocy cinemachine więc farclip sam się zwiększył po stworzeniu nowej kamery i nawet tego nie planowałem xD
-Inne - od siebie dodałem obsługę pada zarówno w menu jak i podczas gry (darowałem sobie jedynie robienie wirtualnej klawiatury dla inputów w setupie multika więc uwaga na wchodzenie tam padem); zabrałem się też za próbę implementacji multika ale niestety zabrakło mi czasu więc jedyne co z niego zostało to button w menu wyłączający fullscreen
+- (B) menu główne z możliwością włączenia singleplayera i włączenia setupu multika (wybór host/client i odpowiednie input fieldy)
+- (G) można w sumie uznać że generator mapy jest za to odpowiedzialny już na etapie modyfikowania komórek - wypełnia wszystkie puste pola flood fillem (MapGenerator.EnsureConnectivity), oprócz tego generator portali również uwzględnia odległości od ścian więc gracz nie zablokuje się po teleportacji (PortalsSpawnPointsGenerator.AdjustPositionAwayFromWalls)
+- (E) poruszanie kamerą zrobiłem przy pomocy cinemachine więc farclip sam się zwiększył po stworzeniu nowej kamery i nawet tego nie planowałem xD
+- (Inne) od siebie dodałem obsługę pada zarówno w menu jak i podczas gry (darowałem sobie jedynie robienie wirtualnej klawiatury dla inputów w setupie multika więc uwaga na wchodzenie tam padem); zabrałem się też za próbę implementacji multika ale niestety zabrakło mi czasu więc jedyne co z niego zostało to button w menu wyłączający fullscreen
